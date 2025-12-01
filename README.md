@@ -106,8 +106,8 @@ Install the Edge Impulse toolkit on your Raspberry Pi and create a virtual envir
 | ESP32          | Servos   |
 |----------------|----------|
 | 5V             |Power     |
-| GPIO 25        |Servo X signal     |
-| GPIO 19        | Servo Y signal |
+| GPIO 25        |Servo X signal  - base   |
+| GPIO 19        | Servo Y signal - up & down|
 | GND            | Grounds   |
 
 ![Hardware setup](images/hardware-setup.png)
@@ -145,11 +145,11 @@ python app.py
 ```
 **7. Demo**
 
-- **Scanning mode** :
+The program has a scanning mode and a detection mode. The app will be scanning the area until a landing pad is found. When this happens, it switches to "tracking" mode. It will try to hold the center of the image with the center of the camera.
 
-- **Detection mode** :
+![Detection](images/detection.png)
 
-![Detection](images\detection.png)
+![Demo](images/demo.gif)
 
 **8. Tuning**
 
