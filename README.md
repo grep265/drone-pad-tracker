@@ -67,6 +67,8 @@ Here is a summary of the model architecture, training parameters, and performanc
 3. **Control**: PID control algorithms compute the required pan/tilt adjustments and send servo position commands to the ESP32 via WiFi.
 4. **Tracking**: The ESP32 reads the servo commands and moves the pan-tilt mechanism to center the landing pad.
 
+Note: An ESP32 was used to control the servos because the servos were jittering when they were being controlled directly by the RPi.
+
 ### 4. Deployment
 
 **1. Clone this repository**
@@ -84,9 +86,9 @@ Clone the Edge Impulse project into your account by visiting the link and clicki
 **3. Environment setup**
 Install the Edge Impulse toolkit on your Raspberry Pi and create a virtual environment with the required packages.
 
-- **Install Edge Impulse** : follow the instructions to install the Edge Impulse support for Raspberry Pi. [Edge Impulse & RPi 5](https://docs.edgeimpulse.com/hardware/boards/raspberry-pi-5#installing-dependencies)
+- **Install Edge Impulse** : follow the instructions to install the Edge Impulse support for Raspberry Pi. [Edge Impulse & RPi 5](https://docs.edgeimpulse.com/hardware/boards/raspberry-pi-5#installing-dependencies). Login with your credentials and select the project that you just clone. Note that you might need to re-train a model, but at least you will have the dataset already in your project.
 
-- **Virtual environment** : create a virtual environment and install the required dependencies
+- **Virtual environment** : create a virtual environment and install the required dependencies.
 
 ```bash
   cd drone-pad-tracker
@@ -106,7 +108,9 @@ Install the Edge Impulse toolkit on your Raspberry Pi and create a virtual envir
 | 5V             |Power     |
 | GPIO 25        |Servo X signal     |
 | GPIO 19        | Servo Y signal |
-| GND            | Grouns   |
+| GND            | Grounds   |
+
+![Hardware setup](images/hardware-setup.png)
 
 **5. Software setup**
 
@@ -139,4 +143,48 @@ In a second terminal, inside the ```drone-pad-tracker``` folder run:
 source myenv/bin/activate
 python app.py
 ```
+**7. Demo**
 
+- **Scanning mode** :
+
+- **Detection mode** :
+
+![Detection](images\detection.png)
+
+**8. Tuning**
+
+To fine-tune your system for better performance, you can modify the following parameters in the ```app.py```.
+
+- **PID gains** : 
+
+```bash
+Kp_x 
+Ki_x
+Kd_x
+Kp_y
+Ki_y
+Kd_y
+```
+
+- **Deadzone** : 
+
+```bash
+ERROR_THRESHOLD_X  # pixels
+ERROR_THRESHOLD_Y  # pixels
+```
+
+- **Servo range** : 
+
+```bash
+X_MIN_US # us
+X_MAX_US # us
+Y_MIN_US # us
+Y_MAX_US # us
+```
+Also, on your ```servo-tracker-control.ino``` you can adjust
+
+- **Servo range** :
+```bash
+servoX.attach(servoPin1, 500, 1100);   // X servo
+servoY.attach(servoPin2, 500, 1200);  // Y servo
+```
