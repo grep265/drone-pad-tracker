@@ -145,7 +145,7 @@ python app.py
 ```
 **7. Demo**
 
-The program has a scanning mode and a detection mode. The app will be scanning the area until a landing pad is found. When this happens, it switches to "tracking" mode. It will try to hold the center of the image with the center of the camera. [Watch the video](https://drive.google.com/file/d/1xAzosvgyaAAjODinORxbG6SoWB5SrOpd/view?usp=sharing)
+The program has a scanning mode and a detection mode. The app will be scanning the area until a landing pad is found. When this happens, it switches to "tracking" mode. It will try to hold the center of the image with the center of the camera. [Watch the video](https://drive.google.com/file/d/141JODyOvpHqG69vw8dvM-VsNM2PfHZW4/view?usp=sharing)
 
 ![Detection](images/detection.png)
 
